@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico de Consumo</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Histórico de Consumo de {{ request.user.username }}</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Data</th>
+                    <th>Preço Unitário</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for historico in historicos %}
+                <tr>
+                    <td>{{ historico.nome_do_produto.nome_do_produto }}</td>
+                    <td>{{ historico.quantidade }}</td>
+                    <td>{{ historico.data}}</td>
+                    <td>{{ historico.nome_do_produto.preco }}</td>
+                    <td>{{ historico.valor }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Saldo Total:</td>
+                    <td>{{ saldo_total }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bar da Praça D'Armas</title>
+  <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}">
+</head>
+<body>
+
+
+  <h2>Login</h2>
+  {% if messages %}
+  <div class="alert alert-success" role="alert">
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+  </div>
+{% endif %}
+  <form method="POST">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input class="form-control" type="text" name="username" required><br>
+    <label for="password">Password:</label>
+    <input class="form-control" type="password" name="password" required><br>
+    <button class="btn btn-primary w-30 py-2" type="submit">Login</button>
+  </form>
+
+  <hr>
+<a class="btn btn-primary" href="{% url 'registro' %}">Cadastra-se</a>
+
+  
+  <footer>
+    &copy; {{ year }} Bar Praça D'armas by Pedro Rezende. Todos os direitos reservados.
+  </footer>
+  <script src="{% static 'bootstrap/bootstrap.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Editar Produto</h2>
+  <form method="POST" class="form">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input type="text" class="form-control" name="nome" value="{{ produto.nome }}" required>
+    </div>
+    <div class="form-group">
+      <label for="quantidade">Quantidade:</label>
+      <input type="number" class="form-control" name="quantidade" value="{{ produto.quantidade }}" required>
+    </div>
+    <div class="form-group">
+      <label for="preco">Preço:</label>
+      <input type="number" step="0.01" class="form-control" name="preco" value="{{ produto.preco }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Atualizar</button>
+  </form>
+{% endblock %}
+

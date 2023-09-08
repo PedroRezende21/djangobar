@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<style>
+  .logout-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  .icone {
+        width: 24px;
+        height: 24px;
+    }
+
+  .spacer {
+    margin-top: 10px; /* Espaço superior */
+    margin-bottom: 10px; /* Espaço inferior */
+  }
+</style>
+
+<h2 style="font-family: Arial; text-shadow: 2px 2px 4px #000000; color: #000000; font-size: 55px; text-align: center;">Seja Bem Vindo, {{ request.user.username }}!</h2>
+<div class="logout-button">
+  <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">Logout</button>
+  </form>
+</div>
+
+{% if messages %}
+  <div class="alert alert-success" role="alert">
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+  </div>
+{% endif %}
+
+&nbsp;
+<div class="d-flex justify-content-end mt-2">
+
+  <div class="mr-2">
+    <img src="{% static 'icons/cart-shopping-solid.svg' %}" alt="Ícone" style="width: 24px; height: 24px;">
+    <a class="btn btn-primary" href="{% url 'comprar' %}">Comprar</a>
+  </div>
+
+  &nbsp;&nbsp;
+
+  <div class="mr-2">
+    <img src="{% static 'icons/plus-solid.svg' %}" alt="Ícone" style="width: 24px; height: 24px;">
+    <a class="btn btn-primary" href="{% url 'adicionar_produto' %}">Adicionar Produto</a>
+  </div>
+
+  &nbsp;&nbsp;
+
+  <div class="mr-2">
+    <img src="{% static 'icons/trash-solid.svg' %}" alt="Ícone" style="width: 24px; height: 24px;">
+    <a class="btn btn-secondary" href="{% url 'deletar_historico' %}">Deletar Histórico</a>
+  </div>
+
+  &nbsp;
+
+  <div class="mr-2">
+    <img src="{% static 'icons/table-solid.svg' %}" alt="Ícone" style="width: 24px; height: 24px;">
+    <a class="btn btn-secondary" href="{% url 'historico_consumo' %}">Meu Consumo</a>
+  </div>
+  &nbsp;&nbsp;
+</div>
+
+<div class="spacer">
+  <h3 class="font-weight-bold text-center rounded bg-dark text-light p-2">Produtos Disponíveis</h3>
+</div>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th class="text-center">Nome</th>
+      <th class="text-center">Quantidade</th>
+      <th class="text-center">Preço</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for produto in produtos %}
+    <tr>
+      <td style="text-align: center;">{{ produto.nome_do_produto }}</td>
+      <td class="text-center">{{ produto.quantidade }}</td>
+      <td class="text-center">{{ produto.preco }}</td>
+      <td>
+        <a href="{% url 'editar_produto' produto.id %}" class="btn btn-primary">Editar</a>
+        <a href="{% url 'excluir_produto' produto.id %}" class="btn btn-danger">Excluir</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

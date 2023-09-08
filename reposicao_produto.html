@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Reposição de Produto</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <label for="quantidade">Quantidade:</label>
+    <input type="number" name="quantidade" required><br>
+    <button type="submit">Repor</button>
+  </form>
+{% endblock %}

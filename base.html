@@ -1,0 +1,42 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bar Da Praça D'Armas</title>
+  <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Ninth navbar example">
+    <div class="container-xl">
+      <a class="navbar-brand" href="{% url 'home' %}">Bar da Praça D'Armas</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07XL" aria-controls="navbarsExample07XL" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample07XL">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+          </li>          
+        </ul>
+        <form role="search">
+          <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <footer>
+    &copy; {{ year }} Bar Praça D'armas by Pedro Rezende. Todos os direitos reservados.
+  </footer>
+  <script src="{% static 'bootstrap/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'bootstrap/bootstrap.js' %}"></script>
+</body>
+</html>
